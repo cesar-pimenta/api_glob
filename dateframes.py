@@ -32,24 +32,17 @@ program_audience = pd.read_csv('tvaberta_program_audience.csv')
 
 # x = inventory_avaibility[inventory_avaibility.program_code == 'VALE']
 # print(x)
-
+new_df = pd.DataFrame({'signal': [inventory_avaibility['signal']], 'media': [], 'over': []}, ignore_index=True)
 for index, row in inventory_avaibility.iterrows():
-# for index, row in inventory_avaibility[inventory_avaibility.program_code == 'VALE'].iterrows():
-    print(index, row['signal'], row['program_code'], weekday_date(row['date'].replace('/', '')), row['available_time'])
-
-    program_code = program_audience[program_audience.program_code == str(row['program_code'])]
-    program_signal = program_code[program_code.signal == str(row['signal'])]
+    program_code = program_audience[program_audience.program_code == row['program_code']]
+    program_signal = program_code[program_code.signal == row['signal']]
     order_date = program_signal.sort_values('exhibition_date')
-    print(program_signal)
-
-
-# y = program_audience[program_audience.program_code == program_code]
-
-# print(y.average_audience)
-
-
-# x = inventory_avaibility[inventory_avaibility.program_code == program_code]
-# print(x)
+    media = []
+    for index_x, row_x in order_date.iterrows():
+        if weekday_date(False, row['date'].replace('/', '')) == weekday_date(True, row_x['exhibition_date'].replace('-','')):
+            media.append(row_x['average_audience'])
+    new_df.append({'media': sum(media[-4:])/4}, ignore_index=True)
+print(new_df)
 
 
 # print(program_audience[::1000])
