@@ -38,6 +38,6 @@ def forecast_date_rage(start_date, end_date):
     return result
 
 
-if __name__ == '__main__':
-    forecast.run()
+# if __name__ == '__main__':
+#     forecast.run()
 
