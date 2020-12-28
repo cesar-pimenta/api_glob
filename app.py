@@ -8,7 +8,7 @@ upload_dataframes()
 
 @forecast.route('/')
 def home():
-    return 'Hello - Api_glob'
+    return 'Hello - Api_glob - user '
 
 @forecast.route('/forecast/')
 def forecasts():
