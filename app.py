@@ -8,7 +8,12 @@ upload_dataframes()
 
 @forecast.route('/')
 def home():
-    return 'Hello - Api_glob - user '
+    return 'Hello - Api_glob - user <br>' \
+           '<strong> Return all datas </strong> - /forecast/ <br>' \
+           '<strong> code program and data exact </strong> - /forecast/code=<string:code>&date=<string:date> -' \
+           '<strong> ex - </strong>/forecast/code=huck&date=08-08-2020 <br> ' \
+           '<strong> date range </strong> - /forecast/start_date=<string:start_date>&end_date=<string:end_date>' \
+           '<strong> ex - </strong>/forecast/start_date=25-04-2020&end_date=25-08-2020 <br> '
 
 @forecast.route('/forecast/')
 def forecasts():
@@ -38,6 +43,6 @@ def forecast_date_rage(start_date, end_date):
     return result
 
 
-# if __name__ == '__main__':
-#     forecast.run()
+if __name__ == '__main__':
+    forecast.run()
 
